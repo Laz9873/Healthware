@@ -18,12 +18,21 @@ MDFloatLayout:
 
 
     MDCard:
-        size_hint: .4, .1
+        size_hint: 1.7, .1
         focus_behavior: False
-        pos_hint: {"center_x": .5, "center_y": .15}
-        md_bg_color: "darkgrey"
+        pos_hint: {"center_x": .5, "center_y": .05}
+        md_bg_color: "white"
         unfocus_color: "darkgrey"
         elevation: 6
+
+    MDLabel:
+    
+        font_style:  'H1'
+        font_size: 20
+        pos_hint: {"center_x": .54, "center_y": .15}
+        text: "minigames"
+        allow_selection: True
+    
 
     MDLabel:
     
@@ -45,7 +54,7 @@ MDFloatLayout:
 
     MDSwitch:
         active: True
-        pos_hint: {'center_x': .60, 'center_y': .15}
+        pos_hint: {'center_x': .90, 'center_y': .15}
         icon_active: "check"
         
         track_color_active: "#777a9b"
@@ -55,6 +64,8 @@ MDFloatLayout:
 
 
     MDRaisedButton:
+
+        font_style:  'Subtitle1'
         text: "Today's Workout"
         md_bg_color: "#777a9b"
         pos_hint: {'center_x': .5,  'center_y': .35}
