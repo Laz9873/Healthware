@@ -1,35 +1,15 @@
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
 <Screen>:
     on_leave: app.previous_screen = self.name
-
-<FloatButton@FloatLayout>:
-    id: float_root
-    size_hint: (None, None)
-    text: ''
-    btn_size: (20,20)
-    size: (70,70)
-    bg_color: (0.119, 0.122, 0.155, .6)
-    md_bg_color: app.theme_cls.primary_color
-    pos_hint: {'x':.5}
-    Button:
-        icon: "android"
-        text: float_root.text
-        on_release: app.switch_theme_style()
-        markup: True
-        size_hint: (None,None)
-        size: float_root.btn_size
-        pos_hint: {'x':2, 'y': 8}
-        background_normal:''
-        background_color: (0,0,0,0) 
-        canvas.before:
-            Color:
-                rgba: float_root.bg_color
-            Ellipse:
-                size: self.size
-                pos: self.pos
+    BoxLayout:
+        orientation: 'vertical'
 
 <HomeScreen>:
     
+
     name: 'home'
+
     MDCard:
         size_hint: .7, .1
         focus_behavior: False
@@ -80,44 +60,36 @@
         elevation: 1
 
     
-    FloatButton:
-       
-
 
 <WorkoutsScreen>:
 
-
-    
     name: 'workouts'
 
     MDRectangleFlatButton:
         text: 'Back'
-        pos_hint: {'center_x':0.5,'center_y':0.1}
-        on_release: root.manager.current = app.previous_screen
+        pos_hint: {'center_x':0.5,'center_y':0.04}
+        on_release: root.manager.current = 'home'
     
     MDCard:
         size_hint: (None, None)
-        size: "170dp", "90dp"
+        size: "250dp", "100dp" 
         pos_hint: {'center_x':.5, 'center_y': .8}
-        md_bg_color: "white"
         elevation: 2
         padding: "0dp", "200dp"
         spacing: "106dp"
 
     MDCard:
         size_hint: (None, None)
-        size: "170dp", "90dp"
+        size: "250dp", "100dp" 
         pos_hint: {'center_x':.5, 'center_y': .5}
-        md_bg_color: "white"
         elevation: 2
         padding: "0dp", "200dp"
         spacing: "106dp"
 
     MDCard:
         size_hint: (None, None)
-        size: "170dp", "90dp"
+        size: "250dp", "100dp" 
         pos_hint: {'center_x':.5, 'center_y': .2}
-        md_bg_color: "white"
         elevation: 2
         padding: "0dp", "200dp"
         spacing: "106dp"
@@ -125,3 +97,5 @@
 <RootWidget>:
     HomeScreen
     WorkoutsScreen
+
+
