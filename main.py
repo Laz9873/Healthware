@@ -4,7 +4,7 @@ from kivymd.app import MDApp
 from kivymd.uix.label import MDLabel
 from kivymd.uix.card import MDCard 
 import kivymd.uix.button.button
-from kivy.uix.screenmanager import Screen, ScreenManager
+from kivy.uix.screenmanager import Screen, ScreenManager, WipeTransition
 from kivymd.theming import ThemeManager
 
 
@@ -25,9 +25,9 @@ class Healthware(MDApp):
         super(Healthware, self).__init__(**kwargs)
         self.previous_screen = ""
         self.theme_cls = ThemeManager()
-        self.theme_cls.primary_palette = "BlueGray"
+        self.theme_cls.primary_palette = "Orange"
         self.theme_cls.accent_palette = "Gray"
-        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.theme_style = "Light"
 
     def build(self):
         
@@ -40,5 +40,8 @@ Healthware().run()
 
 
 # to do
+# start back end, connect to api, work on game ect..
+
 # fix the size of the card view
+# rework for icons on workout screen
 # implement the themeing options
