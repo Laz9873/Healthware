@@ -6,6 +6,8 @@ from kivymd.uix.card import MDCard
 import kivymd.uix.button.button
 from kivy.uix.screenmanager import Screen, ScreenManager, WipeTransition
 from kivymd.theming import ThemeManager
+from kivy.uix.image import AsyncImage
+
 
 
 Builder.load_file("hware.kv")
@@ -16,8 +18,13 @@ class HomeScreen(Screen):
 class WorkoutsScreen(Screen):
     pass
 
+class NoweightScreen(Screen):
+    pass
+
 class RootWidget(ScreenManager):
     pass
+
+
 
 class Healthware(MDApp):
 
@@ -25,9 +32,9 @@ class Healthware(MDApp):
         super(Healthware, self).__init__(**kwargs)
         self.previous_screen = ""
         self.theme_cls = ThemeManager()
-        self.theme_cls.primary_palette = "Orange"
+        self.theme_cls.primary_palette = "Gray"
         self.theme_cls.accent_palette = "Gray"
-        self.theme_cls.theme_style = "Light"
+        self.theme_cls.theme_style = "Dark"
 
     def build(self):
         

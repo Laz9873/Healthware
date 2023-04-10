@@ -1,10 +1,17 @@
-#: import WipeTransition kivy.uix.screenmanager.WipeTransition
+#:import WipeTransition kivy.uix.screenmanager.WipeTransition
+
+
+
+
+
 
 <Screen>:
     on_leave: app.previous_screen = self.name
     transition: WipeTransition()
     BoxLayout:
         orientation: 'vertical'
+    
+    
 
 <HomeScreen>:
     
@@ -64,19 +71,6 @@
    
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 <WorkoutsScreen>:
 
     name: 'workouts'
@@ -114,7 +108,28 @@
         radius: [self.width/2, ]
         pos_hint: {'center_x':.35, 'center_y': .8}
         padding: (50, 50)
-        spacing: 0    
+        spacing: 0
+    
+    MDCard:
+        size_hint: .05, .05
+                
+        elevation: 2
+        md_bg_color: "#777a9b"
+        radius: [self.width/2, ]
+        pos_hint: {'center_x':.70, 'center_y': .75}
+        padding: (50, 50)
+        spacing: 0
+
+    Button:
+        background_normal: 'H_projectImg/arrow_next.png'
+        background_down: 'H_projectImg/arrow_next.png'
+        size_hint: .1, .1
+        pos_hint: {'center_x':.69, 'center_y': .75}
+        on_press:
+            root.manager.transition.direction = "left"
+            root.manager.current = 'no_weights'
+
+        
                         
     Image:
         source: 'H_projectImg/no_weights-removebg-preview.png'
@@ -158,12 +173,6 @@
         pos_hint: {'center_x':.35, 'center_y': .48} 
 
 
-
-
-    
-
-
-
     MDCard:
 
         size_hint: .5, .2
@@ -195,9 +204,60 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<NoweightScreen>:
+
+    name: 'no_weights'
+
+    MDBackdrop:
+        id: backdrop
+        left_action_items: [['menu', lambda x: self.open()]]
+        font_name:  'HussarBold-7mRE.otf'
+        title: "No Weights"
+        radius_left: "25dp"
+        radius_right: "25dp"
+        header_text: "Info:"
+
+        MDBackdropBackLayer:
+            AsyncImage:
+                source: '1428.gif'
+                pos_hint: {'center_x':.5, 'center_y': .5}
+                size_hint:( .5, .5)
+        
+
+
+
+    MDRectangleFlatButton:
+        
+        text: 'Back'
+        pos_hint: {'center_x':0.5,'center_y':0.04}
+        on_press:
+            root.manager.transition.direction = "right"
+            root.manager.current = 'workouts'
+
+    
+
    
 <RootWidget>:
+    
+    NoweightScreen
     HomeScreen
     WorkoutsScreen
+    
+    
+    
+    
 
 
