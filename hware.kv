@@ -1,10 +1,6 @@
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 
 
-
-
-
-
 <Screen>:
     on_leave: app.previous_screen = self.name
     transition: WipeTransition()
@@ -17,6 +13,9 @@
     
 
     name: 'home'
+
+    Image:
+        source: 'bg.jpg'
 
     MDCard:
         size_hint: .7, .1
@@ -71,6 +70,21 @@
    
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <WorkoutsScreen>:
 
     name: 'workouts'
@@ -86,7 +100,7 @@
     
     MDCard:
 
-        size_hint: .5, .2
+        size_hint: .7, .25
         pos_hint: {'center_x':.5, 'center_y': .8}
         elevation: 2
        
@@ -101,17 +115,17 @@
             
 
     MDCard:
-        size_hint: .1, .1
+        size_hint: .2, .1
                 
         elevation: 2
         md_bg_color: "#777a9b"
         radius: [self.width/2, ]
-        pos_hint: {'center_x':.35, 'center_y': .8}
+        pos_hint: {'center_x':.30, 'center_y': .8}
         padding: (50, 50)
         spacing: 0
     
     MDCard:
-        size_hint: .05, .05
+        size_hint: .07, .04   
                 
         elevation: 2
         md_bg_color: "#777a9b"
@@ -123,7 +137,7 @@
     Button:
         background_normal: 'H_projectImg/arrow_next.png'
         background_down: 'H_projectImg/arrow_next.png'
-        size_hint: .1, .1
+        size_hint: .2, .1
         pos_hint: {'center_x':.69, 'center_y': .75}
         on_press:
             root.manager.transition.direction = "left"
@@ -134,7 +148,8 @@
     Image:
         source: 'H_projectImg/no_weights-removebg-preview.png'
         size_hint: (.3, .2)    
-        pos_hint: {'center_x':.35, 'center_y': .77}
+        pos_hint: {'center_x':.30, 'center_y': .77}
+        elevation: 2
 
 
 
@@ -145,7 +160,7 @@
 
     MDCard:
 
-        size_hint: .5, .2
+        size_hint: .7, .25
         pos_hint: {'center_x':.5, 'center_y': .5}
         elevation: 2
        
@@ -158,24 +173,24 @@
             font_size: self.width/25
 
     MDCard:
-        size_hint: .1, .1
+        size_hint: .2, .1
                 
         elevation: 2
         md_bg_color: "#777a9b"
         radius: [self.width/2, ]
-        pos_hint: {'center_x':.35, 'center_y': .5}
+        pos_hint: {'center_x':.30, 'center_y': .5}
         padding: (50, 50)
         spacing: 0    
                         
     Image:
         source: 'H_projectImg/minimal_weights-removebg-preview.png'
         size_hint: (.25, .15)    
-        pos_hint: {'center_x':.35, 'center_y': .48} 
+        pos_hint: {'center_x':.30, 'center_y': .48} 
 
 
     MDCard:
 
-        size_hint: .5, .2
+        size_hint: .7, .25
         pos_hint: {'center_x':.5, 'center_y': .2}
         elevation: 2
        
@@ -188,32 +203,19 @@
             font_size: self.width/25
 
     MDCard:
-        size_hint: .1, .1
+        size_hint: .2, .1
                 
         elevation: 2
         md_bg_color: "#777a9b"
         radius: [self.width/2, ]
-        pos_hint: {'center_x':.35, 'center_y': .2}
+        pos_hint: {'center_x':.30, 'center_y': .2}
         padding: (50, 50)
         pacing: 0    
                         
     Image:
         source: 'H_projectImg/noun-room-52044-removebg-preview.png'
         size_hint: (.15, .10)    
-        pos_hint: {'center_x':.35, 'center_y': .19}
-
-
-
-
-
-
-
-
-
-
-
-
-
+        pos_hint: {'center_x':.30, 'center_y': .19}
 
 
 
@@ -251,10 +253,12 @@
 
    
 <RootWidget>:
-    
-    NoweightScreen
+
     HomeScreen
     WorkoutsScreen
+    NoweightScreen
+    
+    
     
     
     
