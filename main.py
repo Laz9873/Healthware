@@ -9,7 +9,6 @@ from kivymd.theming import ThemeManager
 from kivy.uix.image import AsyncImage
 
 
-
 Builder.load_file("hware.kv")
 
 class HomeScreen(Screen):
