@@ -1,6 +1,8 @@
 #:import WipeTransition kivy.uix.screenmanager.WipeTransition
 
 
+
+
 <Screen>:
     on_leave: app.previous_screen = self.name
     transition: WipeTransition()
@@ -219,49 +221,88 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<TooltipMDIconButton@MDIconButton+MDTooltip>
+
+
 <NoweightScreen>:
 
     name: 'no_weights'
 
-    MDBackdrop:
-        id: backdrop
-        left_action_items: [['menu', lambda x: self.open()]]
-        font_name:  'HussarBold-7mRE.otf'
-        title: "No Weights"
-        radius_left: "25dp"
-        radius_right: "25dp"
-        header_text: "Info:"
+    
 
-        MDBackdropBackLayer:
-            AsyncImage:
-                source: '1428.gif'
-                pos_hint: {'center_x':.5, 'center_y': .5}
-                size_hint:( .5, .5)
+    MDCard:
+        size_hint: .9, .6
+        pos_hint: {'center_x':.5, 'center_y': .5}
+        elevation: 2
+        md_bg_color: "#ffffff"
+                
+       
+    AsyncImage:
+        id: noweights
+        source: 'Noweights/1428.gif'
+        pos_hint: {'center_x':.5, 'center_y': .5}
+        size_hint:( .9, .9)        
         
 
+    MDTopAppBar:
+        title: "No weights"
+        pos_hint: {"top": 1}
+        elevation: 4
 
 
-    MDRectangleFlatButton:
-        
-        text: 'Back'
+    #flesh out more 
+    MDIconButton:
+        icon: "alert-circle-outline"
+        on_release: app.show_example_list_bottom_sheet()
+        pos_hint: {"center_x": .9, "center_y": .85}
+
+    TooltipMDIconButton:
+        tooltip_text: "Quit workout"
+        icon: "window-close"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':0.5,'center_y':0.04}
         on_press:
             root.manager.transition.direction = "right"
             root.manager.current = 'workouts'
+            root.reset()
+
+    MDIconButton:
+        icon: "arrow-left"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
+        pos_hint: {'center_x':.8, 'center_y': .04}
+        on_press: root.back()
+
+    MDIconButton:
+        icon: "arrow-right"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
+        pos_hint: {'center_x':.9, 'center_y': .04}
+        on_press: root.next()
 
     
 
    
 <RootWidget>:
 
+    NoweightScreen
     HomeScreen
     WorkoutsScreen
-    NoweightScreen
     
     
     
     
-    
-    
-
-
