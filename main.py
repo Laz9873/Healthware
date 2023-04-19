@@ -1,33 +1,11 @@
-from kivy.app import App, Builder
-import kivymd.uix.boxlayout
-from kivymd.app import MDApp
-from kivymd.uix.label import MDLabel
-from kivymd.uix.card import MDCard 
-import kivymd.uix.button.button
-from kivy.uix.screenmanager import Screen, ScreenManager, WipeTransition
-from kivymd.theming import ThemeManager
-from kivy.uix.image import AsyncImage
-from kivymd.uix.button import MDFloatingActionButton
-from kivymd.uix.bottomsheet import MDListBottomSheet
+from dependencies import *
 
 
 Builder.load_file("hware.kv")
 
-#  class A:
-#         def __init__(self):
-#             pass
-#         def x(self):
-#             print('x')
-
-#  class B:
-#         def __init__(self):
-#             A().x()
-
-
 
 class HomeScreen(Screen):
     pass
-
 class WorkoutsScreen(Screen):
     pass
 
@@ -53,6 +31,7 @@ class NoweightScreen(Screen):
 
     def reset(self):
         self.ids.noweights.source = Healthware.noweightslist[0]
+    
 
 
 
@@ -60,6 +39,7 @@ class RootWidget(ScreenManager):
     pass
 
 
+    
 
 class Healthware(MDApp):
 
@@ -72,21 +52,29 @@ class Healthware(MDApp):
         super(Healthware, self).__init__(**kwargs) 
         self.previous_screen = ""
         self.theme_cls = ThemeManager()
-        self.theme_cls.primary_palette = "Gray"
-        self.theme_cls.accent_palette = "Gray"
-        self.theme_cls.theme_style = "Dark"
-
+    
 
     def build(self):
         
         return RootWidget()
     
-    def show_example_list_bottom_sheet(self):
-        bottom_sheet_menu = MDListBottomSheet()
-        bottom_sheet_menu.add_item()
-        bottom_sheet_menu.open()
+    def toggle_theme(self):
+        
+        if self.theme_cls.theme_style == "Light":
+            self.theme_cls.theme_style = "Dark"
+        else:
+            self.theme_cls.theme_style = "Light"
+        
+    
 
- 
+    def show_example_grid_bottom_sheet(self):
+
+        bottom_sheet_menu = MDGridBottomSheet()
+        bottom_sheet_menu.add_widget(
+            MDLabel(text="Label 2", halign="center", valign="middle")
+            )
+        bottom_sheet_menu.open()
+    
 
 if __name__ == '__main__':
     Healthware().run()
