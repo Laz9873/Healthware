@@ -2,38 +2,41 @@
 
 
 
-
 <Screen>:
     on_leave: app.previous_screen = self.name
     transition: WipeTransition()
     BoxLayout:
         orientation: 'vertical'
-    
+
+    MDIconButton:
+        icon: "theme-light-dark"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
+        pos_hint: {"center_x": .9, "center_y": .95}
+        on_release:
     
 
-    
-
+        
 <HomeScreen>:
     
 
     name: 'home'
-
-    MDIconButton:
-        icon: "theme-light-dark"
-        pos_hint: {"center_x": .9, "center_y": .95}
-        on_release: app.toggle_theme()
+    
         
                     
-
+    
 
     Image:
         source: 'bg.png'
 
     MDCard:
+        id:home
         size_hint: .7, .1
         focus_behavior: False
         pos_hint: {"center_x": .5, "center_y": .1}
         elevation: 1
+        md_bg_color: app.theme_cls.primary_color
+        
 
     MDLabel:
     
@@ -46,36 +49,41 @@
 
     MDLabel:
 
-        id: hometext1
         font_name:  'HussarBold-7mRE.otf'
         font_size: 45
         pos_hint: {"center_x": .6, "center_y": .80}
         text: "Hey"
         allow_selection: True
         padding: "4dp", "4dp"
+        color: app.theme_cls.primary_color
+        
+
+    
     
     MDLabel:
-        id: hometext2
+
         font_name:  'HussarBold-7mRE.otf'
         font_size: 45
         pos_hint: {"center_x": .6, "center_y": .70}
         text: "There."
         allow_selection: True
         padding: "4dp", "4dp"
+        color: app.theme_cls.primary_color
 
 
     MDSwitch:
         active: True
         pos_hint: {'center_x': .68, 'center_y': .1}
-        track_color_active: "#777a9b"
-        thumb_color_active: "#777a9b"
+        active: False
+        track_color_active: "#c9f1fe"
+        
 
 
     MDFillRoundFlatButton:
 
         font_style:  'Subtitle1'
         text: "Today's Workout"
-        md_bg_color: "#777a9b"
+        md_bg_color: app.theme_cls.primary_color
         pos_hint: {'center_x': .5,  'center_y': .35}
         on_press: 
             root.manager.transition.direction = "left"
@@ -83,6 +91,17 @@
         elevation: 1
    
    
+
+
+
+
+
+
+
+
+
+
+
 
 <WorkoutsScreen>:
 
@@ -123,25 +142,14 @@
         padding: (50, 50)
         spacing: 0
     
-    MDCard:
-        size_hint: .07, .04   
-                
-        elevation: 2
-        md_bg_color: "#777a9b"
-        radius: [self.width/2, ]
+    MDIconButton:
+        icon: "arrow-right"
+        theme_icon_color: "Custom"
+        icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':.70, 'center_y': .75}
-        padding: (50, 50)
-        spacing: 0
-
-    Button:
-        background_normal: 'H_projectImg/arrow_next.png'
-        background_down: 'H_projectImg/arrow_next.png'
-        size_hint: .2, .1
-        pos_hint: {'center_x':.69, 'center_y': .75}
-        on_press:
+        on_release: 
             root.manager.transition.direction = "left"
             root.manager.current = 'no_weights'
-
         
                         
     Image:
@@ -149,14 +157,6 @@
         size_hint: (.3, .2)    
         pos_hint: {'center_x':.30, 'center_y': .77}
         elevation: 2
-
-
-
-
-
-
-
-
     MDCard:
 
         size_hint: .7, .25
@@ -239,12 +239,12 @@
     name: 'no_weights'
 
     MDLabel:
-        id: labeltext
+        id: noweightslabeltext
         text: "Wrist circles"
         bold: True
         font_name: 'HussarBold-7mRE.otf'
         pos_hint:  {'center_x':.6, 'center_y': .95}
-        elevation: 8
+        font_size: self.width/25
 
     MDHeroFrom:
         size_hint: .8, .4
@@ -264,7 +264,7 @@
 
     MDIconButton:
         icon: "alert-circle-outline"
-        on_release: app.show_example_grid_bottom_sheet()
+        on_release: root.show_example_grid_bottom_sheet()
         pos_hint: {"center_x": .9, "center_y": .85}
 
     TooltipMDIconButton:
@@ -274,32 +274,36 @@
         icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':0.5,'center_y':0.4}
         on_release:
+            root.resetnoweights()
             root.manager.transition.direction = "right"
             root.manager.current = 'workouts'
-            root.reset()
+            
 
     MDIconButton:
         icon: "arrow-left"
         theme_icon_color: "Custom"
         icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':.10, 'center_y': .4}
-        on_press: root.back()
+        on_press: root.backnoweights()
 
     MDIconButton:
         icon: "arrow-right"
         theme_icon_color: "Custom"
         icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':.9, 'center_y': .4}
-        on_press: root.next()
+        on_press: root.nextnoweights()
     
 
     
 
    
 <RootWidget>:
-    HomeScreen
+
     NoweightScreen
     WorkoutsScreen
+    HomeScreen
+    
+    
     
     
     
