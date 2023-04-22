@@ -150,6 +150,7 @@
         on_release: 
             root.manager.transition.direction = "left"
             root.manager.current = 'no_weights'
+
         
                         
     Image:
@@ -264,7 +265,7 @@
 
     MDIconButton:
         icon: "alert-circle-outline"
-        on_release: root.show_example_grid_bottom_sheet()
+        on_release: app.show_Modal()
         pos_hint: {"center_x": .9, "center_y": .85}
 
     TooltipMDIconButton:
@@ -275,6 +276,7 @@
         pos_hint: {'center_x':0.5,'center_y':0.4}
         on_release:
             root.resetnoweights()
+            app.reset()
             root.manager.transition.direction = "right"
             root.manager.current = 'workouts'
             
@@ -284,16 +286,29 @@
         theme_icon_color: "Custom"
         icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':.10, 'center_y': .4}
-        on_press: root.backnoweights()
+        on_press: 
+            app.back()
+            root.backnoweights()
 
     MDIconButton:
         icon: "arrow-right"
         theme_icon_color: "Custom"
         icon_color: app.theme_cls.primary_color
         pos_hint: {'center_x':.9, 'center_y': .4}
-        on_press: root.nextnoweights()
+        on_press: 
+            app.next()
+            root.nextnoweights()
+
+    MDFloatLayout:
+        padding: "10dp"
+        MDProgressBar:
+            id: progress
+            value: 0
+            orientation: "horizontal"
     
 
+
+        
     
 
    

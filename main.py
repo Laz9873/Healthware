@@ -26,7 +26,7 @@ class Healthware(MDApp):
                             "Situps"" \ntarget muscle: abs", 
                             "Wide hand push up"" \ntarget muscle: pectorals",
                             "Back and forth step"" \ntarget muscle: cardiovascular system",
-                            "Monster walk"" \ntarget muscle: glutes",]
+                            "Monster walk"" \ntarget muscle: glutes"]
 
     def __init__(self, **kwargs):
         super(Healthware, self).__init__(**kwargs) 
@@ -41,12 +41,21 @@ class Healthware(MDApp):
         return RootWidget()
     
     def next(self):
-        Healthware.currentWorkout += 1
+        if Healthware.currentWorkout < 5:
+            Healthware.currentWorkout += 1
 
     def back(self):
-        Healthware.currentWorkout -= 1
-        
-   
+        if Healthware.currentWorkout != 0:
+            Healthware.currentWorkout -= 1
+    
+    def reset(self):
+        Healthware.currentWorkout = 0
+
+    def show_Modal(self):
+        view = ModalView(size_hint=(.5, .5))
+        view.add_widget(MDLabel(text=Healthware.noweightsdescription[Healthware.currentWorkout],halign= 'center'))
+        view.open()
+
 
 
 obj = Healthware()
@@ -58,3 +67,7 @@ if __name__ == '__main__':
 # start back end, connect to api, work on game ect..
 # rework for icons on workout screen
 # implement the themeing options
+# resize gifs, modal view
+# add padding to ! icon
+# add workout tip under each workout
+# connect minigames with progress bar and switch
