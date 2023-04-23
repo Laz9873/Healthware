@@ -6,10 +6,16 @@ from child_classes import *
 
 # Parent classes 
 class RootWidget(ScreenManager):
+    
     pass
+    
+        
 
 
-class Healthware(MDApp):
+class Healthware(MDApp,App):
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs) 
     
     currentWorkout = 0
     noweightslist = ['Noweights/1428.gif','Noweights/3655.gif', 'Noweights/0001.gif', 'Noweights/1311.gif'
@@ -27,11 +33,6 @@ class Healthware(MDApp):
                             "Wide hand push up"" \ntarget muscle: pectorals",
                             "Back and forth step"" \ntarget muscle: cardiovascular system",
                             "Monster walk"" \ntarget muscle: glutes"]
-
-    def __init__(self, **kwargs):
-        super(Healthware, self).__init__(**kwargs) 
-        self.previous_screen = ""
-
     
     def build(self):
         Builder.load_file("hware.kv")
@@ -63,6 +64,9 @@ obj = Healthware()
 if __name__ == '__main__':
     Healthware().run()
 
+
+
+
 # to do
 # start back end, connect to api, work on game ect..
 # rework for icons on workout screen
@@ -71,3 +75,4 @@ if __name__ == '__main__':
 # add padding to ! icon
 # add workout tip under each workout
 # connect minigames with progress bar and switch
+# optimize race game
