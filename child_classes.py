@@ -1,5 +1,4 @@
-from main import obj, Screen, Widget, Rectangle, Window, Clock
-
+from main import obj, Screen, Widget, Rectangle, Window, Clock, Healthware, App, MDRectangleFlatButton
 
 def collides(rect1, rect2):
         r1x = rect1[0][0]
@@ -41,12 +40,17 @@ class NoweightScreen(Screen, Widget):
         obj.next()
         self.ids.noweights.source = obj.noweightslist[obj.currentWorkout]
         self.ids.noweightslabeltext.text = obj.noweights_name[obj.currentWorkout]
-        if self.ids.progress.value !=100:
+        if self.ids.progress.value !=120:
             self.ids.progress.value += 20
         if self.ids.progress.value > 60:
             self.finish()
+        if self.ids.progress.value == 100:
+            btn = MDRectangleFlatButton(text='Play Game!')
+            btn.bind(on_press=self.clkfunc)
+            self.add_widget(btn)
             
-
+    def clkfunc(self , obj):
+        App.get_running_app().stop()
     
     def backnoweights(self):
         obj.back()
@@ -54,8 +58,6 @@ class NoweightScreen(Screen, Widget):
         self.ids.noweightslabeltext.text = obj.noweights_name[obj.currentWorkout]
         if self.ids.progress.value !=0:
             self.ids.progress.value -= 20
-        if self.ids.progress.value < 60:
-            self.finish()
 
 
 
@@ -109,13 +111,14 @@ class NoweightScreen(Screen, Widget):
         self.player.pos = (currentx, currenty)
 
         if collides((self.player.pos,self.size), (self.enemy.pos, self.enemy.size)):
-            print("colliding")
             self.finish()
             
-        else:
-            print("not colliding")
-
+    
 
     def finish(self):
         self.canvas.remove(self.player)
         self.canvas.remove(self.enemy)
+
+    # def tracker(self):
+    #     if self.ids.progress.value == 120:
+    #         obj.run0 = False

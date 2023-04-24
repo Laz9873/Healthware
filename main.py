@@ -3,6 +3,8 @@ from dependencies import *
 # import child classes
 from child_classes import *
 
+from pong import *
+
 
 # Parent classes 
 class RootWidget(ScreenManager):
@@ -56,13 +58,28 @@ class Healthware(MDApp,App):
         view = ModalView(size_hint=(.5, .5))
         view.add_widget(MDLabel(text=Healthware.noweightsdescription[Healthware.currentWorkout],halign= 'center'))
         view.open()
-
-
+    
+    
 
 obj = Healthware()
 
+# for app
+run0 = True
+# for game 
+run1 = True
+
+
+
 if __name__ == '__main__':
-    Healthware().run()
+    while run0:
+        Healthware().run()
+        run0= False
+        
+    while run1:
+        PongApp().run()
+        run1= False
+# while run1:
+#     PongApp().run()
 
 
 
