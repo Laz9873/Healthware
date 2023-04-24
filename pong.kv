@@ -1,4 +1,6 @@
 
+
+
 <PongBall>:
     size: 50, 50
     canvas:
@@ -18,6 +20,7 @@
     ball: pong_ball
     player1: player_left
     player2: player_right
+    
 
     canvas:
         Rectangle:
@@ -38,7 +41,6 @@
 
 
 
-
     PongBall:
         id: pong_ball
         center: self.parent.center
@@ -52,3 +54,10 @@
         id: player_right
         x: root.width - self.width
         center_y: root.center_y
+
+    Button:
+        text: "Exit App"
+        on_release: app.close_app()
+        pos: 0, 0
+        size: 200, 50
+

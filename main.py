@@ -56,7 +56,7 @@ class Healthware(MDApp,App):
 
     def show_Modal(self):
         view = ModalView(size_hint=(.5, .5))
-        view.add_widget(MDLabel(text=Healthware.noweightsdescription[Healthware.currentWorkout],halign= 'center'))
+        view.add_widget(MDLabel(text="Tip: 4 sets of however many reps you feel comfertable with\n " + Healthware.noweightsdescription[Healthware.currentWorkout],halign= 'center'))
         view.open()
     
     
@@ -66,26 +66,25 @@ obj = Healthware()
 # for app
 run0 = True
 # for game 
-run1 = True
+run1 = False
 
 
 
 if __name__ == '__main__':
     while run0:
         Healthware().run()
+    
+        
         run0= False
+        run1 = True
         
     while run1:
         PongApp().run()
-        run1= False
-# while run1:
-#     PongApp().run()
-
-
-
+        run1 =False
+        run0 =True
 
 # to do
-# start back end, connect to api, work on game ect..
+
 # rework for icons on workout screen
 # implement the themeing options
 # resize gifs, modal view

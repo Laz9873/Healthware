@@ -6,6 +6,9 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from random import randint
 from kivy.uix.label import Label
+from kivy.uix.button import Button
+from kivy.uix.gridlayout import GridLayout
+
 
 
 class PongPaddle(Widget):
@@ -32,7 +35,8 @@ class PongBall(Widget):
 
 
 class PongGame(Widget):
-    ball = ObjectProperty(None)
+    
+
 
     def victory(self, win):
         if win:
@@ -106,14 +110,19 @@ class PongGame(Widget):
         if touch.x < self.width / 3:
             self.player1.center_y = touch.y
             print(self.player1.center_y)
+    
+
+        
 
 
 
-
-class PongApp(App):
+class PongApp(App, PongGame):
     def build(self):
         game = PongGame()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0 / 60.0)
         return game
+    
+    def close_app(self, *args):
+        App.get_running_app().stop()
 

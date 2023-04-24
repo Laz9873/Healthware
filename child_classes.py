@@ -1,5 +1,7 @@
 from main import obj, Screen, Widget, Rectangle, Window, Clock, Healthware, App, MDRectangleFlatButton
 
+from kivymd.uix.snackbar import Snackbar
+
 def collides(rect1, rect2):
         r1x = rect1[0][0]
         r1y = rect1[0][1]
@@ -32,20 +34,24 @@ class NoweightScreen(Screen, Widget):
         obj.reset()
         self.ids.noweights.source = obj.noweightslist[0]
         self.ids.noweightslabeltext.text = obj.noweights_name[0]
+        if self.ids.progress.value > 60:
+            self.finish()
         self.ids.progress.value = 0
-        self.finish()
+
         
         
     def nextnoweights(self):
         obj.next()
         self.ids.noweights.source = obj.noweightslist[obj.currentWorkout]
         self.ids.noweightslabeltext.text = obj.noweights_name[obj.currentWorkout]
-        if self.ids.progress.value !=120:
+        if self.ids.progress.value !=100:
             self.ids.progress.value += 20
         if self.ids.progress.value > 60:
-            self.finish()
+            self.halfway()
         if self.ids.progress.value == 100:
-            btn = MDRectangleFlatButton(text='Play Game!')
+            btn = MDRectangleFlatButton(text='Play Game!', 
+                                        pos_hint={"center_x": 0.5, "center_y": 0.30})
+            
             btn.bind(on_press=self.clkfunc)
             self.add_widget(btn)
             
@@ -60,9 +66,6 @@ class NoweightScreen(Screen, Widget):
             self.ids.progress.value -= 20
 
 
-
-
-    
     def gameScreen(self):
         self._keyboard = Window.request_keyboard(self._on_keyboard_closed,self) 
         self._keyboard.bind(on_key_down= self._on_key_down)
@@ -119,6 +122,11 @@ class NoweightScreen(Screen, Widget):
         self.canvas.remove(self.player)
         self.canvas.remove(self.enemy)
 
-    # def tracker(self):
-    #     if self.ids.progress.value == 120:
-    #         obj.run0 = False
+
+    def halfway(self):
+        Snackbar(
+        text="Your almost There!",
+        snackbar_x="50dp",
+        snackbar_y="50dp",
+        size_hint_x=.5
+        ).open()
